@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router";
 import { useState } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Footer from "../components/Footer/FooterPage";
+import Sidebar from "../components/Layouts/Sidebar";
+import Footer from "../components/Layouts/FooterPage";
+import Navbar from "../components/Layouts/Navbar";
 
 export function PublicLayout() {
   const token = localStorage.getItem("token");
@@ -36,6 +37,10 @@ export function DashboardLayout() {
         }`}
       >
         <main className="flex-1 p-7 overflow-y-auto bg-white">
+          <div className="flex items-center justify-between mb-4">
+            <Navbar onToggleSidebar={handleSidebarToggle} />
+          </div>
+
           <Outlet />
         </main>
         <Footer alignLeft />

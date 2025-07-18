@@ -1,6 +1,6 @@
 import LoginForm from "../components/Auth/LoginForm";
 import ilustrasi from "../assets/ilustrasi.svg";
-import Footer from "../components/Footer/FooterPage";
+import Footer from "../components/Layouts/FooterPage";
 
 export default function LoginPage() {
   return (
