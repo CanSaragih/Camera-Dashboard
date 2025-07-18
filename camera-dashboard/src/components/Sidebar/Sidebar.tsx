@@ -4,10 +4,9 @@ import logo from "../../assets/logo.svg";
 
 interface SidebarProps {
   isCollapsed: boolean;
-  onToggle: () => void;
 }
 
-export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
+export default function Sidebar({ isCollapsed }: SidebarProps) {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
 
   return (
@@ -85,14 +84,6 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
           </div>
         </nav>
       </div>
-
-      {/* Overlay for mobile */}
-      {!isCollapsed && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
-          onClick={onToggle}
-        />
-      )}
     </>
   );
 }

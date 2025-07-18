@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router";
 import { useState } from "react";
-import Sidebar from "../components/Layouts/Sidebar";
+import Sidebar from "../components/Sidebar/Sidebar";
 import Footer from "../components/Layouts/FooterPage";
 import Navbar from "../components/Layouts/Navbar";
 
@@ -27,10 +27,7 @@ export function DashboardLayout() {
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar
-        isCollapsed={isSidebarCollapsed}
-        onToggle={handleSidebarToggle}
-      />
+      <Sidebar isCollapsed={isSidebarCollapsed} />
       <div
         className={`flex flex-col flex-1 transition-all duration-300 ease-in-out ${
           isSidebarCollapsed ? "ml-0" : "ml-72"

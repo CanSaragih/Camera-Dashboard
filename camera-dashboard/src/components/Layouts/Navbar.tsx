@@ -3,6 +3,7 @@ import { Menu, Bell, CircleUser, User, Settings, LogOut } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLogout } from "../../hooks/useLogout";
+import { useUser } from "../../hooks/useUser";
 
 export default function Navbar({
   onToggleSidebar,
@@ -12,6 +13,7 @@ export default function Navbar({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const logout = useLogout();
+  const { user, loading } = useUser();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -76,10 +78,12 @@ export default function Navbar({
                     <CircleUser size={20} className="text-white" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-800">
-                      Admin User
+                    <p className="text-sm font-semibold text-gray-800 ">
+                      {loading ? "Loading..." : user?.username || "Unknown"}
                     </p>
-                    <p className="text-xs text-gray-500">admin@example.com</p>
+                    <p className="text-xs text-gray-500">
+                      {loading ? "Loading..." : user?.email || "-"}
+                    </p>
                   </div>
                 </div>
               </div>
