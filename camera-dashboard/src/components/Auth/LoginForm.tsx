@@ -1,41 +1,22 @@
-import { useState } from "react";
 import logo from "../../assets/logo.svg";
-import { https } from "../../helpers/https";
-import { useNavigate } from "react-router";
-import type { AxiosError } from "axios";
 import { motion } from "framer-motion";
 import { DotWave } from "@uiball/loaders";
-import { toast } from "react-hot-toast";
+import { useLogin } from "../../hooks/useLogin";
+import { useState } from "react";
 
 export default function LoginForm() {
-  const navigate = useNavigate();
-
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("password");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const { login, loading, error, setError } = useLogin();
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      const { data } = await https.post("/login", {
-        username,
-        password,
-      });
-
-      localStorage.setItem("token", data.token);
-      navigate("/dashboard");
-      toast.success("Login successful ✅");
-    } catch (error) {
-      const axiosError = error as AxiosError<{ error: string }>;
-      const errorMessage = axiosError.response?.data?.error || "Login failed";
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
+    if (!username || !password) {
+      setError("Username or password is required!");
+      return;
     }
+    login(username, password);
   };
 
   if (loading) {
@@ -68,7 +49,10 @@ export default function LoginForm() {
       </div>
 
       {/* Form */}
-      <form className="space-y-4 sm:space-y-5 lg:space-y-6">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 sm:space-y-5 lg:space-y-6"
+      >
         {error && (
           <motion.div
             key="error-alert"

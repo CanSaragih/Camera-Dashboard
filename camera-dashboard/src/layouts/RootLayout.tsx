@@ -38,7 +38,7 @@ export function DashboardLayout() {
             <Navbar onToggleSidebar={handleSidebarToggle} />
           </div>
 
-          <Outlet />
+          <Outlet context={{ isSidebarCollapsed }} />
         </main>
         <Footer alignLeft />
       </div>
