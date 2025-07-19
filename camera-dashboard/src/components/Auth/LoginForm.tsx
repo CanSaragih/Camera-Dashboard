@@ -49,17 +49,17 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-md p-4 sm:p-6 lg:p-8">
+    <div className="w-full max-w-sm sm:max-w-md lg:max-w-sm xl:max-w-lg p-2 sm:p-4 lg:p-6">
       {/* Logo and Heading */}
-      <div className="text-center mb-6 sm:mb-8">
-        <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg sm:rounded-xl mb-3 sm:mb-4 shadow-lg">
+      <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+        <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg sm:rounded-xl mb-2 sm:mb-3 lg:mb-4 shadow-lg">
           <img
             src={logo}
             alt="Logo"
-            className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 filter brightness-0 invert"
+            className="w-6 h-6 sm:w-7 sm:h-7 lg:w-10 lg:h-10 filter brightness-0 invert"
           />
         </div>
-        <h1 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-gray-800 mb-1">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-1">
           Login Page
         </h1>
         <p className="text-gray-500 text-xs sm:text-sm">
@@ -68,7 +68,7 @@ export default function LoginForm() {
       </div>
 
       {/* Form */}
-      <form className="space-y-4 sm:space-y-6">
+      <form className="space-y-4 sm:space-y-5 lg:space-y-6">
         {error && (
           <motion.div
             key="error-alert"

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLogout } from "../../hooks/useLogout";
 import { useUser } from "../../hooks/useUser";
+import { capitalizeFirstLetter } from "../../utils/String";
 
 export default function Navbar({
   onToggleSidebar,
@@ -33,7 +34,7 @@ export default function Navbar({
       {/* Left: Sidebar Toggle */}
       <div className="flex items-center">
         <button
-          className="p-2 rounded-lg hover:bg-green-700/40 transition-colors duration-300 text-zinc-100 hover:text-zinc-200"
+          className="p-2 rounded-lg hover:bg-green-700/40 transition-colors duration-300 text-zinc-100 hover:text-zinc-200 cursor-pointer"
           onClick={onToggleSidebar}
           aria-label="Toggle Sidebar"
         >
@@ -44,7 +45,7 @@ export default function Navbar({
       {/* Right: Bell + Profile */}
       <div className="flex items-center gap-3 relative" ref={dropdownRef}>
         <button
-          className="p-2 rounded-lg hover:bg-green-700/40 transition-colors duration-300 text-zinc-100 hover:text-zinc-200"
+          className="p-2 rounded-lg hover:bg-green-700/40 transition-colors duration-300 text-zinc-100 hover:text-zinc-200 cursor-pointer"
           aria-label="Notifications"
         >
           <Bell size={25} />
@@ -79,7 +80,9 @@ export default function Navbar({
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-800 ">
-                      {loading ? "Loading..." : user?.username || "Unknown"}
+                      {loading
+                        ? "Loading..."
+                        : capitalizeFirstLetter(user?.username || "Unknown")}
                     </p>
                     <p className="text-xs text-gray-500">
                       {loading ? "Loading..." : user?.email || "-"}

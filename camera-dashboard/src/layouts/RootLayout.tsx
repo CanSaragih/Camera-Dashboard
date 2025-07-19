@@ -33,8 +33,8 @@ export function DashboardLayout() {
           isSidebarCollapsed ? "ml-0" : "ml-72"
         }`}
       >
-        <main className="flex-1 p-7 overflow-y-auto bg-white">
-          <div className="flex items-center justify-between mb-4">
+        <main className="flex-1 p-6 overflow-y-auto bg-[#fafafa]">
+          <div className="flex items-center justify-between mb-5">
             <Navbar onToggleSidebar={handleSidebarToggle} />
           </div>
 
