@@ -21,7 +21,7 @@ export default function GraphCard({ title, labels, values }: GraphCardProps) {
 
   return (
     <div
-      className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 w-full h-80 hover:shadow-xl transition-shadow duration-300"
+      className="bg-white p-6 rounded-2xl shadow-lg w-full h-80 hover:shadow-xl transition-all duration-300 ease-in-out"
       onMouseDown={(e) => e.preventDefault()}
     >
       <div className="mb-4">

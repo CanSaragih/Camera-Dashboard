@@ -12,7 +12,7 @@ export default function CameraStatsCard({
   iconBg,
 }: CameraStatsCardProps) {
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-6 flex items-center gap-4">
+    <div className="bg-white shadow-lg hover:shadow-xl rounded-2xl p-6 flex items-center gap-4 transition-shadow duration-300">
       <div
         className={`w-12 h-12 flex items-center justify-center rounded-full ${iconBg}`}
       >

@@ -1,4 +1,3 @@
-// hooks/useUser.ts
 import { useCallback, useEffect, useState } from "react";
 import { https } from "../helpers/https";
 import { useNavigate } from "react-router";

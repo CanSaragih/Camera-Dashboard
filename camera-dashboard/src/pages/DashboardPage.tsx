@@ -6,6 +6,8 @@ import { useUser } from "../hooks/useUser";
 import { capitalizeFirstLetter } from "../utils/String";
 import { Video, VideoOff } from "lucide-react";
 import { useOutletContext } from "react-router";
+import { motion } from "framer-motion";
+import { containerVariants, itemVariants } from "../utils/motionsVariants";
 
 type DashboardContextType = {
   isSidebarCollapsed: boolean;
@@ -15,6 +17,7 @@ export default function DashboardPage() {
   const { isSidebarCollapsed } = useOutletContext<DashboardContextType>();
   const { user, loading } = useUser();
   const { cameras, loading: camerasLoading } = useCameraData();
+
   const cpu = useGraphData("/graph/cpu");
   const memory = useGraphData("/graph/memory");
   const storage = useGraphData("/graph/storage");
@@ -43,51 +46,80 @@ export default function DashboardPage() {
       {/* Stats Cards Section */}
       <div className="w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          <CameraStatsCard
-            icon={<Video className="w-6 h-6 text-black" />}
-            count={camerasLoading ? 0 : cameras?.total_cameras || 0}
-            label="Camera Total"
-            iconBg="bg-yellow-300"
-          />
-          <CameraStatsCard
-            icon={<Video className="w-6 h-6 text-white" />}
-            count={camerasLoading ? 0 : cameras?.active_cameras.length || 0}
-            label="Active Camera"
-            iconBg="bg-[#019e54]"
-          />
-          <CameraStatsCard
-            icon={<VideoOff className="w-6 h-6 text-white" />}
-            count={camerasLoading ? 0 : cameras?.inactive_cameras.length || 0}
-            label="Inactive Camera"
-            iconBg="bg-red-500"
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <CameraStatsCard
+              icon={<Video className="w-6 h-6 text-black" />}
+              count={camerasLoading ? 0 : cameras?.total_cameras || 0}
+              label="Camera Total"
+              iconBg="bg-yellow-300"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
+            <CameraStatsCard
+              icon={<Video className="w-6 h-6 text-white" />}
+              count={camerasLoading ? 0 : cameras?.active_cameras.length || 0}
+              label="Active Camera"
+              iconBg="bg-[#019e54]"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <CameraStatsCard
+              icon={<VideoOff className="w-6 h-6 text-white" />}
+              count={camerasLoading ? 0 : cameras?.inactive_cameras.length || 0}
+              label="Inactive Camera"
+              iconBg="bg-red-500"
+            />
+          </motion.div>
         </div>
       </div>
 
       {/* Graph Section */}
-      <div
-        className={`grid gap-4 sm:gap-6 lg:gap-8 mt-4 ${
+      <motion.div
+        className={`grid gap-4 sm:gap-6 lg:gap-8 mt-4 transition-all duration-300 ease-in-out ${
           isSidebarCollapsed
             ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             : "grid-cols-1 sm:grid-cols-2"
         }`}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <GraphCard
-          title="CPU Utilization"
-          labels={cpu.labels}
-          values={cpu.values}
-        />
-        <GraphCard
-          title="Memory Utilization"
-          labels={memory.labels}
-          values={memory.values}
-        />
-        <GraphCard
-          title="Storage Utilization"
-          labels={storage.labels}
-          values={storage.values}
-        />
-      </div>
+        <motion.div variants={itemVariants}>
+          <GraphCard
+            title="CPU Utilization"
+            labels={cpu.labels}
+            values={cpu.values}
+          />
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <GraphCard
+            title="Memory Utilization"
+            labels={memory.labels}
+            values={memory.values}
+          />
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <GraphCard
+            title="Storage Utilization"
+            labels={storage.labels}
+            values={storage.values}
+          />
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

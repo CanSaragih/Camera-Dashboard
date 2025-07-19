@@ -7,7 +7,7 @@ import { PublicLayout, DashboardLayout } from "./layouts/RootLayout";
 export default function App() {
   return (
     <BrowserRouter>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" />
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path="/" element={<LoginPage />} />
