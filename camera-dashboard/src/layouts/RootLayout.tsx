@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router";
 import { useState } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
+import Sidebar from "../components/Layouts/Sidebar";
 import Footer from "../components/Layouts/FooterPage";
 import Navbar from "../components/Layouts/Navbar";
 
