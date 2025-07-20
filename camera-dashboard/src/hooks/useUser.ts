@@ -8,11 +8,11 @@ interface User {
   email: string;
   username: string;
   phone?: string;
+  role?: "admin" | "viewer";
 }
 
 export function useUser() {
   const [user, setUser] = useState<User | null>(null);
-
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -24,7 +24,11 @@ export function useUser() {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUser(data);
+
+      const simulatedRole: "admin" | "viewer" =
+        data.username === "admin" ? "admin" : "viewer";
+
+      setUser({ ...data, role: simulatedRole });
     } catch (error) {
       const axiosError = error as AxiosError<{ error: string }>;
       if (!axiosError.response) {

@@ -88,38 +88,46 @@ export default function DashboardPage() {
       </div>
 
       {/* Graph Section */}
-      <motion.div
-        className={`grid gap-4 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-8 mt-4 transition-all duration-300 ease-in-out ${
-          isSidebarCollapsed
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            : "grid-cols-1 sm:grid-cols-2"
-        }`}
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div variants={itemVariants}>
-          <GraphCard
-            title="CPU Utilization"
-            labels={cpu.labels}
-            values={cpu.values}
-          />
+      {user?.role === "admin" && (
+        <motion.div
+          className={`grid gap-4 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-8 mt-4 transition-all duration-300 ease-in-out ${
+            isSidebarCollapsed
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              : "grid-cols-1 sm:grid-cols-2"
+          }`}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={itemVariants}>
+            <GraphCard
+              title="CPU Utilization"
+              labels={cpu.labels}
+              values={cpu.values}
+            />
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <GraphCard
+              title="Memory Utilization"
+              labels={memory.labels}
+              values={memory.values}
+            />
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <GraphCard
+              title="Storage Utilization"
+              labels={storage.labels}
+              values={storage.values}
+            />
+          </motion.div>
         </motion.div>
-        <motion.div variants={itemVariants}>
-          <GraphCard
-            title="Memory Utilization"
-            labels={memory.labels}
-            values={memory.values}
-          />
-        </motion.div>
-        <motion.div variants={itemVariants}>
-          <GraphCard
-            title="Storage Utilization"
-            labels={storage.labels}
-            values={storage.values}
-          />
-        </motion.div>
-      </motion.div>
+      )}
+
+      {user?.role === "viewer" && (
+        <div className="text-center text-sm text-gray-500 italic mt-4">
+          Graphs are not available for viewer accounts.
+        </div>
+      )}
     </div>
   );
 }
