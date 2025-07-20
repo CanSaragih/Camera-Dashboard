@@ -15,7 +15,7 @@ A modern React-based camera monitoring dashboard with real-time statistics and s
 
 ```bash
 git clone https://github.com/CanSaragih/Camera-Dashboard.git
-cd Camera-Dashboard/camera-dashboard
+cd camera-dashboard
 ```
 
 2. Install dependencies:
