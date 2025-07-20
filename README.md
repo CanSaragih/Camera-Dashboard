@@ -24,6 +24,20 @@ cd Camera-Dashboard/camera-dashboard
 npm install
 ```
 
+3. Copy the example .env file and set the API URL:
+
+```bash
+cp .env.example .env
+```
+
+4. Then edit .env and make sure it contains:
+
+```bash
+VITE_API_URL=https://your-api-url.com
+```
+
+##
+
 ## Running the Application
 
 ### Development Mode
@@ -33,6 +47,8 @@ npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+##
 
 ### Production Build
 
@@ -45,6 +61,8 @@ npm run preview
 
 - **Username:** `admin`
 - **Password:** `password`
+
+##
 
 ## Project Structure
 
