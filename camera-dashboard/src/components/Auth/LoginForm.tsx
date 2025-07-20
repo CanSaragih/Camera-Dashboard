@@ -5,8 +5,8 @@ import { useLogin } from "../../hooks/useLogin";
 import { useState } from "react";
 
 export default function LoginForm() {
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("password");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const { login, loading, error, setError } = useLogin();
 
