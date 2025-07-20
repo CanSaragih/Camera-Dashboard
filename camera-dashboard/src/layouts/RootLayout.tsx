@@ -27,10 +27,13 @@ export function DashboardLayout() {
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar isCollapsed={isSidebarCollapsed} />
+      <Sidebar
+        isCollapsed={isSidebarCollapsed}
+        setIsCollapsed={setIsSidebarCollapsed}
+      />
       <div
         className={`flex flex-col flex-1 transition-all duration-300 ease-in-out ${
-          isSidebarCollapsed ? "ml-0" : "ml-72"
+          isSidebarCollapsed ? "ml-0" : "ml-0 md:ml-72"
         }`}
       >
         <main className="flex-1 p-6 overflow-y-auto bg-[#fafafa]">

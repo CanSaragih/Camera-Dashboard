@@ -45,7 +45,7 @@ export default function DashboardPage() {
 
       {/* Stats Cards Section */}
       <div className="w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,7 +89,7 @@ export default function DashboardPage() {
 
       {/* Graph Section */}
       <motion.div
-        className={`grid gap-4 sm:gap-6 lg:gap-8 mt-4 transition-all duration-300 ease-in-out ${
+        className={`grid gap-4 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-8 mt-4 transition-all duration-300 ease-in-out ${
           isSidebarCollapsed
             ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             : "grid-cols-1 sm:grid-cols-2"

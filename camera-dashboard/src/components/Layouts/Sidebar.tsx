@@ -4,13 +4,22 @@ import logo from "../../assets/logo.svg";
 
 interface SidebarProps {
   isCollapsed: boolean;
+  setIsCollapsed: (collapsed: boolean) => void;
 }
 
-export default function Sidebar({ isCollapsed }: SidebarProps) {
+export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
 
   return (
     <>
+      {/* Overlay for mobile - close sidebar on overlay click */}
+      {!isCollapsed && (
+        <div
+          className="fixed inset-0 bg-black opacity-40 z-30 md:hidden transition-opacity duration-500"
+          onClick={() => setIsCollapsed(true)}
+        />
+      )}
+
       {/* Sidebar */}
       <div
         className={`${
