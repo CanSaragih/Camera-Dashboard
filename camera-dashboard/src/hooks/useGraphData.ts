@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { https } from "../helpers/https";
 import type { AxiosError } from "axios";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { showToastOnce } from "../helpers/toastHelpers";
 
 export function useGraphData(endpoint: string) {
   const [labels, setLabels] = useState<string[]>([]);
@@ -23,24 +23,34 @@ export function useGraphData(endpoint: string) {
       } catch (error) {
         const axiosError = error as AxiosError<{ error: string }>;
         if (!axiosError.response) {
-          toast.error("Network error, please try again later.");
+          showToastOnce(
+            "Network error, please try again later.",
+            "network-error"
+          );
         } else {
           switch (axiosError.response.status) {
             case 401:
-              toast.error("Session expired. Please login again");
+              showToastOnce(
+                "Session expired, please log in again.",
+                "session-expired"
+              );
               localStorage.removeItem("token");
               navigate("/");
               break;
             case 403:
-              toast.error("You don't have permission to access this.");
+              showToastOnce(
+                "You don't have permission to access this.",
+                "forbidden"
+              );
               break;
             case 500:
-              toast.error("Something went wrong on our end.");
+              showToastOnce("Something went wrong on our end.", "server-error");
               break;
             default:
-              toast.error(
+              showToastOnce(
                 axiosError.response.data?.error ||
-                  "An unexpected error occurred."
+                  "An unexpected error occurred.",
+                "unexpected-error"
               );
           }
         }
